@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="18dp">
 
         <!-- Cabeçalho Compacto -->
         <LinearLayout
@@ -22,8 +22,8 @@
 
             <ImageButton
                 android:id="@+id/btnVoltarQuiz"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@android:drawable/ic_menu_revert"
                 android:contentDescription="Voltar" />
@@ -34,15 +34,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Pergunta 1 de 10"
-                android:textSize="16sp"
+                android:textSize="22sp"
                 android:textStyle="bold"
                 android:gravity="center"
                 android:textColor="#8B4789" />
 
             <ImageButton
                 android:id="@+id/btnOuvirQuiz"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@android:drawable/ic_media_play"
                 android:contentDescription="Ouvir pergunta" />
@@ -66,12 +66,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Qual é a pergunta do quiz?"
-            android:textSize="18sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:gravity="center"
             android:textColor="#333333"
-            android:layout_marginBottom="16dp"
-            android:padding="12dp"
+            android:layout_marginBottom="18dp"
+            android:padding="22dp"
             android:background="#E8F5E8"
             android:elevation="2dp" />
 
@@ -81,11 +81,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:gravity="center"
             android:textColor="#666666"
             android:background="#F0F0F0"
-            android:padding="12dp"
+            android:padding="18dp"
             android:layout_marginBottom="16dp"
             android:visibility="gone"
             android:maxLines="3"
@@ -109,11 +109,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:gravity="start"
             android:textColor="#4CAF50"
             android:layout_marginBottom="16dp"
-            android:padding="12dp"
+            android:padding="16dp"
             android:background="#F3E5F5"
             android:visibility="gone" />
 
@@ -127,22 +127,24 @@
             <Button
                 android:id="@+id/btnProximaPergunta"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="55dp"
                 android:text="Ver Resposta"
-                android:textSize="16sp"
+                android:textSize="22sp"
                 android:background="#8B4789"
                 android:textColor="#FFFFFF"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="8dp"
+                android:tint="#8B4789"/>
 
             <Button
                 android:id="@+id/btnAvancarQuiz"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
+                android:layout_height="55dp"
                 android:text="Próxima"
-                android:textSize="16sp"
+                android:textSize="22sp"
                 android:background="#4CAF50"
                 android:textColor="#FFFFFF"
-                android:visibility="gone" />
+                android:visibility="gone"
+                android:tint="#8B4789"/>
 
         </LinearLayout>
 
