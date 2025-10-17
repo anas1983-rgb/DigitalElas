@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>ImageFullscreenActivity.kt</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #6aab73;}
+.s5 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ImageFullscreenActivity.kt</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">ana</span><span class="s2">.</span><span class="s1">digitalelas</span>
+
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">os</span><span class="s2">.</span><span class="s1">Bundle</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">ImageView</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">appcompat</span><span class="s2">.</span><span class="s1">app</span><span class="s2">.</span><span class="s1">AppCompatActivity</span>
+
+<span class="s0">class </span><span class="s1">ImageFullscreenActivity : AppCompatActivity</span><span class="s2">() {</span>
+
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState: Bundle?</span><span class="s2">) {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState</span><span class="s2">)</span>
+        <span class="s1">setContentView</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.</span><span class="s1">activity_image_fullscreen</span><span class="s2">)</span>
+
+        <span class="s3">// Obter nome da imagem enviada pela tela anterior</span>
+        <span class="s0">val </span><span class="s1">nomeImagem </span><span class="s2">= </span><span class="s1">intent</span><span class="s2">.</span><span class="s1">getStringExtra</span><span class="s2">(</span><span class="s4">&quot;NOME_IMAGEM&quot;</span><span class="s2">) </span><span class="s1">?: </span><span class="s4">&quot;computador_partes&quot;</span>
+
+        <span class="s3">// Configurar a imagem em tela cheia</span>
+        <span class="s0">val </span><span class="s1">imageView </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">ImageView</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">imgFullscreen</span><span class="s2">)</span>
+
+        <span class="s0">try </span><span class="s2">{</span>
+            <span class="s3">// Carregar a imagem</span>
+            <span class="s0">val </span><span class="s1">resourceId </span><span class="s2">= </span><span class="s1">resources</span><span class="s2">.</span><span class="s1">getIdentifier</span><span class="s2">(</span><span class="s1">nomeImagem</span><span class="s2">, </span><span class="s4">&quot;drawable&quot;</span><span class="s2">, </span><span class="s1">packageName</span><span class="s2">)</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">resourceId </span><span class="s2">!= </span><span class="s5">0</span><span class="s2">) {</span>
+                <span class="s1">imageView</span><span class="s2">.</span><span class="s1">setImageResource</span><span class="s2">(</span><span class="s1">resourceId</span><span class="s2">)</span>
+            <span class="s2">}</span>
+        <span class="s2">} </span><span class="s1">catch </span><span class="s2">(</span><span class="s1">e: Exception</span><span class="s2">) {</span>
+            <span class="s3">// Em caso de erro, usar imagem padrão</span>
+            <span class="s1">imageView</span><span class="s2">.</span><span class="s1">setImageResource</span><span class="s2">(</span><span class="s1">android</span><span class="s2">.</span><span class="s1">R</span><span class="s2">.</span><span class="s1">drawable</span><span class="s2">.</span><span class="s1">ic_menu_help</span><span class="s2">)</span>
+        <span class="s2">}</span>
+
+        <span class="s3">// Fechar ao tocar na imagem</span>
+        <span class="s1">imageView</span><span class="s2">.</span><span class="s1">setOnClickListener </span><span class="s2">{</span>
+            <span class="s1">finish</span><span class="s2">()</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onBackPressed</span><span class="s2">() {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onBackPressed</span><span class="s2">()</span>
+        <span class="s1">finish</span><span class="s2">()</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFAF8"
+    android:padding="24dp"
+    android:gravity="center">
+
+    <!-- Ícone de Celebração -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="🎉"
+        android:textSize="80sp"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/txtTituloResultado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quiz Concluído!"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#8B4789"
+        android:gravity="center"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Pontuação -->
+    <TextView
+        android:id="@+id/txtPontuacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="8/10 (80%)"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#4CAF50"
+        android:gravity="center"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Mensagem de Desempenho -->
+    <TextView
+        android:id="@+id/txtMensagemResultado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Muito bom! 👍\nVocê tem bom conhecimento do celular"
+        android:textSize="18sp"
+        android:textColor="#333333"
+        android:gravity="center"
+        android:lineSpacingExtra="8sp"
+        android:padding="20dp"
+        android:background="#FFFFFF"
+        android:elevation="4dp"
+        android:layout_marginBottom="30dp" />
+
+    <!-- Botões de Ação -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/btnVoltarResultado"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="Voltar ao Módulo"
+            android:textSize="16sp"
+            android:background="#666666"
+            android:textColor="#FFFFFF"
+            android:layout_marginEnd="8dp" />
+
+        <Button
+            android:id="@+id/btnRefazerQuiz"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="Refazer Quiz"
+            android:textSize="16sp"
+            android:background="#FF9800"
+            android:textColor="#FFFFFF"
+            android:layout_marginStart="8dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

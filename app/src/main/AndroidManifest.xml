@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ana.digitalelas">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/icone_app"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.DigitalElas">
+
+        <!-- Activity Principal -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Activity do Menu - APENAS ESTA LINHA SIMPLES -->
+        <activity android:name=".MenuModulosActivity" />
+        <!-- Activity do Desktop -->
+        <activity android:name=".DesktopActivity" />
+        <activity android:name=".ImageFullscreenActivity" />
+        <!-- 🆕 NOVA ACTIVITY CELULAR - ADICIONE ESTA LINHA -->
+        <activity android:name=".CelularActivity" />
+        <activity android:name=".QuizActivity" />
+        <activity android:name=".InternetActivity" />
+        <activity android:name=".EmailActivity" />
+        <activity android:name=".TrabalhoActivity"/>
+        <activity android:name=".ComprasActivity"/>
+        <activity android:name=".BancoActivity"/>
+        <activity android:name=".SegurancaActivity"/>
+
+    </application>
+</manifest>

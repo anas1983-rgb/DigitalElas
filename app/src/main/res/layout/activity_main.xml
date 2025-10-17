@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFAF8"
+    android:gravity="center"
+    android:padding="32dp">
+
+    <!-- Ícone do App -->
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@mipmap/icone_app"
+        android:layout_marginBottom="40dp"
+        android:contentDescription="Ícone do app Digital Elas" />
+
+    <!-- Título Principal -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Digital Elas"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="#8B4789"
+        android:gravity="center"
+        android:layout_marginBottom="60dp" />
+
+    <!-- Subtítulo -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Escolha seu idioma"
+        android:textSize="18sp"
+        android:textColor="#666666"
+        android:gravity="center"
+        android:layout_marginBottom="40dp" />
+
+    <!-- Botão Português -->
+    <Button
+        android:id="@+id/btnPortugues"
+        android:layout_width="280dp"
+        android:layout_height="70dp"
+        android:text="Português 🇧🇷"
+        android:textSize="20sp"
+        android:background="#8B4789"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Botão Espanhol -->
+    <Button
+        android:id="@+id/btnEspanhol"
+        android:layout_width="280dp"
+        android:layout_height="70dp"
+        android:text="Español 🇪🇸"
+        android:textSize="20sp"
+        android:background="#4CAF50"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="40dp" />
+
+    <!-- Botão Ouvir Opções -->
+    <ImageButton
+        android:id="@+id/btnOuvirOpcoes"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@android:drawable/ic_media_play"
+        android:background="#FF9800"
+        android:contentDescription="Ouvir opções de idioma" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ouvir opções
+        Escuchar opciones"
+        android:textSize="16sp"
+        android:textColor="#666666"
+        android:gravity="center"
+        android:layout_marginTop="10dp" />
+
+</LinearLayout>
+    

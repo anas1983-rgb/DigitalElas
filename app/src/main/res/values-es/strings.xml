@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="modulo_internet">Internet Básica</string>
+    <string name="modulo_internet_desc">Conceptos fundamentales</string>
+    <string name="modulo_redes_sociais">Redes Sociales</string>
+    <string name="modulo_redes_sociais_desc">Cómo usar redes sociales</string>
+    <string name="modulo_seguranca">Seguridad Online</string>
+    <string name="modulo_seguranca_desc">Protege tus datos</string>
+    <string name="modulo_compras">Compras Online</string>
+    <string name="modulo_compras_desc">Compra con seguridad</string>
+
+    <string name="o_que_aprender">¿Qué aprender?</string>
+    <string name="btn_voltar_descricao">Volver a la pantalla anterior</string>
+    <string name="btn_ouvir_opcoes">Escuchar Opciones</string>
+
+</resources>

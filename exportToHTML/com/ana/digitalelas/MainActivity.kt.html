@@ -1,0 +1,110 @@
+<html>
+<head>
+<title>MainActivity.kt</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+MainActivity.kt</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">ana</span><span class="s2">.</span><span class="s1">digitalelas</span>
+
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">content</span><span class="s2">.</span><span class="s1">Intent</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">os</span><span class="s2">.</span><span class="s1">Bundle</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">speech</span><span class="s2">.</span><span class="s1">tts</span><span class="s2">.</span><span class="s1">TextToSpeech</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">Button</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">ImageButton</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">Toast</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">appcompat</span><span class="s2">.</span><span class="s1">app</span><span class="s2">.</span><span class="s1">AppCompatActivity</span>
+<span class="s1">import java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Locale</span>
+
+<span class="s0">class </span><span class="s1">MainActivity : AppCompatActivity</span><span class="s2">(), </span><span class="s1">TextToSpeech</span><span class="s2">.</span><span class="s1">OnInitListener </span><span class="s2">{</span>
+
+    <span class="s1">private lateinit </span><span class="s0">var </span><span class="s1">tts: TextToSpeech</span>
+    <span class="s1">private </span><span class="s0">var </span><span class="s1">idiomaSelecionado: String </span><span class="s2">= </span><span class="s3">&quot;pt&quot;</span>
+
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState: Bundle?</span><span class="s2">) {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState</span><span class="s2">)</span>
+        <span class="s1">setContentView</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.</span><span class="s1">activity_main</span><span class="s2">)</span>
+
+        <span class="s4">// Inicializar Text-to-Speech</span>
+        <span class="s1">tts </span><span class="s2">= </span><span class="s1">TextToSpeech</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s0">this</span><span class="s2">)</span>
+
+        <span class="s4">// Configurar botões</span>
+        <span class="s1">configurarBotoes</span><span class="s2">()</span>
+    <span class="s2">}</span>
+
+    <span class="s1">private </span><span class="s0">fun </span><span class="s1">configurarBotoes</span><span class="s2">() {</span>
+        <span class="s0">val </span><span class="s1">btnPortugues </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">Button</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">btnPortugues</span><span class="s2">)</span>
+        <span class="s0">val </span><span class="s1">btnEspanhol </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">Button</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">btnEspanhol</span><span class="s2">)</span>
+        <span class="s0">val </span><span class="s1">btnOuvirOpcoes </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">ImageButton</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">btnOuvirOpcoes</span><span class="s2">)</span>
+
+        <span class="s4">// Botão Português</span>
+        <span class="s1">btnPortugues</span><span class="s2">.</span><span class="s1">setOnClickListener </span><span class="s2">{</span>
+            <span class="s1">idiomaSelecionado </span><span class="s2">= </span><span class="s3">&quot;pt&quot;</span>
+            <span class="s1">Toast</span><span class="s2">.</span><span class="s1">makeText</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s3">&quot;Português selecionado!&quot;</span><span class="s2">, </span><span class="s1">Toast</span><span class="s2">.</span><span class="s1">LENGTH_SHORT</span><span class="s2">).</span><span class="s1">show</span><span class="s2">()</span>
+            <span class="s1">falarTexto</span><span class="s2">(</span><span class="s3">&quot;Português selecionado. Bem-vinda ao Digital Elas!&quot;</span><span class="s2">)</span>
+
+            <span class="s0">val </span><span class="s1">intent </span><span class="s2">= </span><span class="s1">Intent</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s1">MenuModulosActivity::</span><span class="s0">class</span><span class="s2">.</span><span class="s1">java</span><span class="s2">)</span>
+            <span class="s1">intent</span><span class="s2">.</span><span class="s1">putExtra</span><span class="s2">(</span><span class="s3">&quot;IDIOMA&quot;</span><span class="s2">, </span><span class="s3">&quot;pt&quot;</span><span class="s2">)</span>
+            <span class="s1">startActivity</span><span class="s2">(</span><span class="s1">intent</span><span class="s2">)</span>
+        <span class="s2">}</span>
+
+        <span class="s4">// Botão Espanhol</span>
+        <span class="s1">btnEspanhol</span><span class="s2">.</span><span class="s1">setOnClickListener </span><span class="s2">{</span>
+            <span class="s1">idiomaSelecionado </span><span class="s2">= </span><span class="s3">&quot;es&quot;</span>
+            <span class="s1">Toast</span><span class="s2">.</span><span class="s1">makeText</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s3">&quot;¡Español seleccionado!&quot;</span><span class="s2">, </span><span class="s1">Toast</span><span class="s2">.</span><span class="s1">LENGTH_SHORT</span><span class="s2">).</span><span class="s1">show</span><span class="s2">()</span>
+            <span class="s1">falarTexto</span><span class="s2">(</span><span class="s3">&quot;Español seleccionado. ¡Bienvenida a Digital Elas!&quot;</span><span class="s2">)</span>
+
+            <span class="s4">// ADICIONE ESTAS 2 LINHAS ↓</span>
+            <span class="s0">val </span><span class="s1">intent </span><span class="s2">= </span><span class="s1">Intent</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s1">MenuModulosActivity::</span><span class="s0">class</span><span class="s2">.</span><span class="s1">java</span><span class="s2">)</span>
+            <span class="s1">intent</span><span class="s2">.</span><span class="s1">putExtra</span><span class="s2">(</span><span class="s3">&quot;IDIOMA&quot;</span><span class="s2">, </span><span class="s3">&quot;es&quot;</span><span class="s2">)</span>
+            <span class="s1">startActivity</span><span class="s2">(</span><span class="s1">intent</span><span class="s2">)</span>
+
+        <span class="s2">}</span>
+
+        <span class="s4">// Botão Ouvir Opções</span>
+        <span class="s1">btnOuvirOpcoes</span><span class="s2">.</span><span class="s1">setOnClickListener </span><span class="s2">{</span>
+            <span class="s0">when </span><span class="s2">(</span><span class="s1">idiomaSelecionado</span><span class="s2">) {</span>
+                <span class="s3">&quot;pt&quot; </span><span class="s2">-&gt; </span><span class="s1">falarTexto</span><span class="s2">(</span><span class="s3">&quot;Escolha seu idioma: Português ou Espanhol&quot;</span><span class="s2">)</span>
+                <span class="s3">&quot;es&quot; </span><span class="s2">-&gt; </span><span class="s1">falarTexto</span><span class="s2">(</span><span class="s3">&quot;Elija su idioma: Portugués o Español&quot;</span><span class="s2">)</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s1">private </span><span class="s0">fun </span><span class="s1">falarTexto</span><span class="s2">(</span><span class="s1">texto: String</span><span class="s2">) {</span>
+        <span class="s0">when </span><span class="s2">(</span><span class="s1">idiomaSelecionado</span><span class="s2">) {</span>
+            <span class="s3">&quot;pt&quot; </span><span class="s2">-&gt; </span><span class="s1">tts</span><span class="s2">.</span><span class="s1">language </span><span class="s2">= </span><span class="s1">Locale</span><span class="s2">(</span><span class="s3">&quot;pt&quot;</span><span class="s2">, </span><span class="s3">&quot;BR&quot;</span><span class="s2">)</span>
+            <span class="s3">&quot;es&quot; </span><span class="s2">-&gt; </span><span class="s1">tts</span><span class="s2">.</span><span class="s1">language </span><span class="s2">= </span><span class="s1">Locale</span><span class="s2">(</span><span class="s3">&quot;es&quot;</span><span class="s2">, </span><span class="s3">&quot;ES&quot;</span><span class="s2">)</span>
+        <span class="s2">}</span>
+
+        <span class="s1">tts</span><span class="s2">.</span><span class="s1">speak</span><span class="s2">(</span><span class="s1">texto</span><span class="s2">, </span><span class="s1">TextToSpeech</span><span class="s2">.</span><span class="s1">QUEUE_FLUSH</span><span class="s2">, </span><span class="s0">null</span><span class="s2">, </span><span class="s0">null</span><span class="s2">)</span>
+    <span class="s2">}</span>
+
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onInit</span><span class="s2">(</span><span class="s1">status: Int</span><span class="s2">) {</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">status </span><span class="s2">== </span><span class="s1">TextToSpeech</span><span class="s2">.</span><span class="s1">SUCCESS</span><span class="s2">) {</span>
+            <span class="s4">// TTS inicializado com sucesso</span>
+            <span class="s1">Toast</span><span class="s2">.</span><span class="s1">makeText</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s3">&quot;Sistema de voz pronto!&quot;</span><span class="s2">, </span><span class="s1">Toast</span><span class="s2">.</span><span class="s1">LENGTH_SHORT</span><span class="s2">).</span><span class="s1">show</span><span class="s2">()</span>
+        <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+            <span class="s1">Toast</span><span class="s2">.</span><span class="s1">makeText</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s3">&quot;Erro no sistema de voz&quot;</span><span class="s2">, </span><span class="s1">Toast</span><span class="s2">.</span><span class="s1">LENGTH_SHORT</span><span class="s2">).</span><span class="s1">show</span><span class="s2">()</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onDestroy</span><span class="s2">() {</span>
+        <span class="s4">// Liberar recursos do TTS</span>
+        <span class="s1">tts</span><span class="s2">.</span><span class="s1">stop</span><span class="s2">()</span>
+        <span class="s1">tts</span><span class="s2">.</span><span class="s1">shutdown</span><span class="s2">()</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onDestroy</span><span class="s2">()</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>ModuloAdapter.kt</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ModuloAdapter.kt</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">ana</span><span class="s2">.</span><span class="s1">digitalelas</span>
+
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">content</span><span class="s2">.</span><span class="s1">Context</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">LayoutInflater</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">View</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">ViewGroup</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">ArrayAdapter</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">TextView</span>
+
+<span class="s0">class </span><span class="s1">ModuloAdapter</span><span class="s2">(</span>
+    <span class="s1">context: Context</span><span class="s2">,</span>
+    <span class="s1">private </span><span class="s0">val </span><span class="s1">modulos: List</span><span class="s2">&lt;</span><span class="s1">Modulo</span><span class="s2">&gt;</span>
+<span class="s2">) </span><span class="s1">: ArrayAdapter</span><span class="s2">&lt;</span><span class="s1">Modulo</span><span class="s2">&gt;(</span><span class="s1">context</span><span class="s2">, </span><span class="s3">0</span><span class="s2">, </span><span class="s1">modulos</span><span class="s2">) {</span>
+
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">getView</span><span class="s2">(</span><span class="s1">position: Int</span><span class="s2">, </span><span class="s1">convertView: View?</span><span class="s2">, </span><span class="s1">parent: ViewGroup</span><span class="s2">)</span><span class="s1">: View </span><span class="s2">{</span>
+        <span class="s0">val </span><span class="s1">view </span><span class="s2">= </span><span class="s1">convertView ?: LayoutInflater</span><span class="s2">.</span><span class="s1">from</span><span class="s2">(</span><span class="s1">context</span><span class="s2">)</span>
+            <span class="s2">.</span><span class="s1">inflate</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.</span><span class="s1">item_modulo</span><span class="s2">, </span><span class="s1">parent</span><span class="s2">, </span><span class="s0">false</span><span class="s2">)</span>
+
+        <span class="s0">val </span><span class="s1">modulo </span><span class="s2">= </span><span class="s1">modulos</span><span class="s2">[</span><span class="s1">position</span><span class="s2">]</span>
+
+        <span class="s4">// Encontrar as Views - TODAS como TextView</span>
+        <span class="s0">val </span><span class="s1">icone </span><span class="s2">= </span><span class="s1">view</span><span class="s2">.</span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">TextView</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">iconeModulo</span><span class="s2">)</span>
+        <span class="s0">val </span><span class="s1">nome </span><span class="s2">= </span><span class="s1">view</span><span class="s2">.</span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">TextView</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">nomeModulo</span><span class="s2">)</span>
+        <span class="s0">val </span><span class="s1">descricao </span><span class="s2">= </span><span class="s1">view</span><span class="s2">.</span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">TextView</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">descricaoModulo</span><span class="s2">)</span>
+
+        <span class="s4">// Configurar os textos</span>
+        <span class="s1">icone</span><span class="s2">.</span><span class="s1">text </span><span class="s2">= </span><span class="s1">modulo</span><span class="s2">.</span><span class="s1">icone        </span><span class="s4">// Emoji como texto</span>
+        <span class="s1">nome</span><span class="s2">.</span><span class="s1">text </span><span class="s2">= </span><span class="s1">modulo</span><span class="s2">.</span><span class="s1">nome          </span><span class="s4">// Nome do módulo</span>
+        <span class="s1">descricao</span><span class="s2">.</span><span class="s1">text </span><span class="s2">= </span><span class="s1">modulo</span><span class="s2">.</span><span class="s1">descricao </span><span class="s4">// Descrição</span>
+
+        <span class="s0">return </span><span class="s1">view</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>

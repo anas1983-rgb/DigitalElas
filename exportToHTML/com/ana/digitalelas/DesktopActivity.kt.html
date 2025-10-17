@@ -1,0 +1,358 @@
+<html>
+<head>
+<title>DesktopActivity.kt</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #2aacb8;}
+.s5 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+DesktopActivity.kt</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">ana</span><span class="s2">.</span><span class="s1">digitalelas</span>
+
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">content</span><span class="s2">.</span><span class="s1">Intent</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">os</span><span class="s2">.</span><span class="s1">Bundle</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">speech</span><span class="s2">.</span><span class="s1">tts</span><span class="s2">.</span><span class="s1">TextToSpeech</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">Button</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">ImageButton</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">ImageView</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">TextView</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">Toast</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">appcompat</span><span class="s2">.</span><span class="s1">app</span><span class="s2">.</span><span class="s1">AppCompatActivity</span>
+<span class="s1">import java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Locale</span>
+
+<span class="s0">class </span><span class="s1">DesktopActivity : AppCompatActivity</span><span class="s2">(), </span><span class="s1">TextToSpeech</span><span class="s2">.</span><span class="s1">OnInitListener </span><span class="s2">{</span>
+
+    <span class="s1">private lateinit </span><span class="s0">var </span><span class="s1">tts: TextToSpeech</span>
+    <span class="s1">private </span><span class="s0">var </span><span class="s1">ttsInicializado </span><span class="s2">= </span><span class="s0">false</span>
+    <span class="s1">private </span><span class="s0">var </span><span class="s1">idioma: String </span><span class="s2">= </span><span class="s3">&quot;pt&quot;</span>
+    <span class="s1">private </span><span class="s0">var </span><span class="s1">liçãoAtual </span><span class="s2">= </span><span class="s4">0</span>
+
+    <span class="s5">// Lista de lições com imagens</span>
+    <span class="s1">private </span><span class="s0">val </span><span class="s1">liçõesPortugues </span><span class="s2">= </span><span class="s1">listOf</span><span class="s2">(</span>
+        <span class="s1">Lição</span><span class="s2">(</span>
+            <span class="s3">&quot;Conhecendo o Computador&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;CPU é o cérebro, monitor são os olhos, teclado e mouse são as mãos do computador. É como uma cozinha organizada: cada parte tem sua função!&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;🖥️&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;computador_partes&quot;</span>
+        <span class="s2">),</span>
+        <span class="s1">Lição</span><span class="s2">(</span>
+            <span class="s3">&quot;Meu Primeiro Windows&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;Área de trabalho é sua sala, menu Iniciar é a porta para todos os programas. Janelas são como portas de diferentes cômodos que você pode abrir e fechar.&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;🪟&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;area_trabalho&quot;</span>
+        <span class="s2">),</span>
+        <span class="s1">Lição</span><span class="s2">(</span>
+            <span class="s3">&quot;Dominando o Mouse&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;Clique esquerdo para selecionar, clique direito para opções, arraste para mover. O mouse é como sua mão digital - ele aponta e pega coisas na tela!&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;🐭&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;mouse_acoes&quot;</span>
+        <span class="s2">),</span>
+        <span class="s1">Lição</span><span class="s2">(</span>
+            <span class="s3">&quot;Teclado - Minhas Primeiras Letras&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;Tecla Enter confirma, Espaço dá espaço, Backspace apaga, Shift faz maiúsculas. É como uma máquina de escrever moderna!&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;⌨️&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;teclado_teclas&quot;</span>
+        <span class="s2">),</span>
+        <span class="s1">Lição</span><span class="s2">(</span>
+            <span class="s3">&quot;Pastas - Organizando Minhas Coisas&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;Pastas são como gavetas: criamos para guardar documentos organizados. Pode ter pastas dentro de pastas, como gavetas dentro de armários.&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;📁&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;pastas_organizacao&quot;</span>
+        <span class="s2">),</span>
+        <span class="s1">Lição</span><span class="s2">(</span>
+            <span class="s3">&quot;Internet no Computador&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;Navegador é seu carro para internet, barra de endereços é o GPS dos sites. Digite o endereço e pressione Enter para viajar!&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;🌐&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;navegador_internet&quot;</span>
+        <span class="s2">),</span>
+        <span class="s1">Lição</span><span class="s2">(</span>
+            <span class="s3">&quot;Email no Computador&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;Email é carta digital: @ é o endereço, anexo é o envelope com fotos. Escreva, coloque o endereço e envie - chega em segundos!&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;📧&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;email_tela&quot;</span>
+        <span class="s2">),</span>
+        <span class="s1">Lição</span><span class="s2">(</span>
+            <span class="s3">&quot;Word - Meus Primeiros Documentos&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;Word é papel digital: digite textos, salve e imprima como uma máquina de escrever moderna. Pode mudar cores, tamanhos e até colocar imagens!&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;📄&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;word_documento&quot;</span>
+        <span class="s2">),</span>
+        <span class="s1">Lição</span><span class="s2">(</span>
+            <span class="s3">&quot;Impressora - Trazendo para o Papel&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;Impressora é máquina de fotocópia pessoal: envia da tela para o papel. Escolha o documento e clique em imprimir - magicamente aparece no papel!&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;🖨️&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;impressora_funcionamento&quot;</span>
+        <span class="s2">),</span>
+        <span class="s1">Lição</span><span class="s2">(</span>
+            <span class="s3">&quot;Segurança no Computador&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;Senha forte é como chave forte: misture letras, números e símbolos. Cuidado com links estranhos! Sempre desconfie de ofertas milagrosas.&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;🔒&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;seguranca_senha&quot;</span>
+        <span class="s2">)</span>
+    <span class="s2">)</span>
+
+    <span class="s1">private </span><span class="s0">val </span><span class="s1">liçõesEspanol </span><span class="s2">= </span><span class="s1">listOf</span><span class="s2">(</span>
+        <span class="s1">Lição</span><span class="s2">(</span>
+            <span class="s3">&quot;Conociendo la Computadora&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;CPU es el cerebro, monitor son los ojos, teclado y mouse son las manos de la computadora. ¡Es como una cocina organizada: cada parte tiene su función!&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;🖥️&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;computador_partes&quot;</span>
+        <span class="s2">),</span>
+        <span class="s1">Lição</span><span class="s2">(</span>
+            <span class="s3">&quot;Mi Primer Windows&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;El escritorio es tu sala, el menú Inicio es la puerta a todos los programas. Las ventanas son como puertas de diferentes habitaciones que puedes abrir y cerrar.&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;🪟&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;area_trabalho&quot;</span>
+        <span class="s2">),</span>
+        <span class="s1">Lição</span><span class="s2">(</span>
+            <span class="s3">&quot;Dominando el Mouse&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;Clic izquierdo para seleccionar, clic derecho para opciones, arrastrar para mover. ¡El mouse es como tu mano digital - apunta y toma cosas en la pantalla!&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;🐭&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;mouse_acoes&quot;</span>
+        <span class="s2">),</span>
+        <span class="s1">Lição</span><span class="s2">(</span>
+            <span class="s3">&quot;Teclado - Mis Primeras Letras&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;Tecla Enter confirma, Espacio da espacio, Backspace borra, Shift hace mayúsculas. ¡Es como una máquina de escribir moderna!&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;⌨️&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;teclado_teclas&quot;</span>
+        <span class="s2">),</span>
+        <span class="s1">Lição</span><span class="s2">(</span>
+            <span class="s3">&quot;Carpetas - Organizando Mis Cosas&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;Las carpetas son como cajones: las creamos para guardar documentos organizados. Puede tener carpetas dentro de carpetas, como cajones dentro de armarios.&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;📁&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;pastas_organizacao&quot;</span>
+        <span class="s2">),</span>
+        <span class="s1">Lição</span><span class="s2">(</span>
+            <span class="s3">&quot;Internet en la Computadora&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;El navegador es tu auto para internet, la barra de direcciones es el GPS de los sitios. ¡Escribe la dirección y presiona Enter para viajar!&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;🌐&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;navegador_internet&quot;</span>
+        <span class="s2">),</span>
+        <span class="s1">Lição</span><span class="s2">(</span>
+            <span class="s3">&quot;Email en la Computadora&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;Email es carta digital: @ es la dirección, archivo adjunto es el sobre con fotos. Escribe, coloca la dirección y envía - ¡llega en segundos!&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;📧&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;email_tela&quot;</span>
+        <span class="s2">),</span>
+        <span class="s1">Lição</span><span class="s2">(</span>
+            <span class="s3">&quot;Word - Mis Primeros Documentos&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;Word es papel digital: escribe textos, guarda e imprime como una máquina de escribir moderna. ¡Puedes cambiar colores, tamaños y hasta poner imágenes!&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;📄&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;word_documento&quot;</span>
+        <span class="s2">),</span>
+        <span class="s1">Lição</span><span class="s2">(</span>
+            <span class="s3">&quot;Impresora - Llevando al Papel&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;La impresora es máquina de fotocopia personal: envía de la pantalla al papel. ¡Elige el documento y haz clic en imprimir - mágicamente aparece en papel!&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;🖨️&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;impressora_funcionamento&quot;</span>
+        <span class="s2">),</span>
+        <span class="s1">Lição</span><span class="s2">(</span>
+            <span class="s3">&quot;Seguridad en la Computadora&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;Contraseña fuerte es como llave fuerte: mezcla letras, números y símbolos. ¡Cuidado con enlaces extraños! Siempre desconfía de ofertas milagrosas.&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;🔒&quot;</span><span class="s2">,</span>
+            <span class="s3">&quot;seguranca_senha&quot;</span>
+        <span class="s2">)</span>
+    <span class="s2">)</span>
+
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState: Bundle?</span><span class="s2">) {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState</span><span class="s2">)</span>
+        <span class="s1">setContentView</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.</span><span class="s1">activity_desktop</span><span class="s2">)</span>
+
+        <span class="s5">// Inicializar Text-to-Speech</span>
+        <span class="s1">tts </span><span class="s2">= </span><span class="s1">TextToSpeech</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s0">this</span><span class="s2">)</span>
+
+        <span class="s5">// Detectar idioma</span>
+        <span class="s1">idioma </span><span class="s2">= </span><span class="s1">intent</span><span class="s2">.</span><span class="s1">getStringExtra</span><span class="s2">(</span><span class="s3">&quot;IDIOMA&quot;</span><span class="s2">) </span><span class="s1">?: </span><span class="s3">&quot;pt&quot;</span>
+
+        <span class="s1">configurarBotoes</span><span class="s2">()</span>
+        <span class="s1">configurarCliqueImagem</span><span class="s2">()</span>
+        <span class="s1">mostrarLiçãoAtual</span><span class="s2">()</span>
+    <span class="s2">}</span>
+
+    <span class="s1">private </span><span class="s0">fun </span><span class="s1">configurarCliqueImagem</span><span class="s2">() {</span>
+        <span class="s0">val </span><span class="s1">imgLicao </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">ImageView</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">imgLicao</span><span class="s2">)</span>
+
+        <span class="s1">imgLicao</span><span class="s2">.</span><span class="s1">setOnClickListener </span><span class="s2">{</span>
+            <span class="s0">val </span><span class="s1">lições </span><span class="s2">= </span><span class="s0">if </span><span class="s2">(</span><span class="s1">idioma </span><span class="s2">== </span><span class="s3">&quot;es&quot;</span><span class="s2">) </span><span class="s1">liçõesEspanol </span><span class="s0">else </span><span class="s1">liçõesPortugues</span>
+            <span class="s0">val </span><span class="s1">lição </span><span class="s2">= </span><span class="s1">lições</span><span class="s2">[</span><span class="s1">liçãoAtual</span><span class="s2">]</span>
+
+            <span class="s5">// Abrir imagem em tela cheia</span>
+            <span class="s0">val </span><span class="s1">intent </span><span class="s2">= </span><span class="s1">Intent</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s1">ImageFullscreenActivity::</span><span class="s0">class</span><span class="s2">.</span><span class="s1">java</span><span class="s2">)</span>
+            <span class="s1">intent</span><span class="s2">.</span><span class="s1">putExtra</span><span class="s2">(</span><span class="s3">&quot;NOME_IMAGEM&quot;</span><span class="s2">, </span><span class="s1">lição</span><span class="s2">.</span><span class="s1">imagem</span><span class="s2">)</span>
+            <span class="s1">startActivity</span><span class="s2">(</span><span class="s1">intent</span><span class="s2">)</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s1">private </span><span class="s0">fun </span><span class="s1">configurarBotoes</span><span class="s2">() {</span>
+        <span class="s0">val </span><span class="s1">btnVoltar </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">ImageButton</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">btnVoltarDesktop</span><span class="s2">)</span>
+        <span class="s0">val </span><span class="s1">btnAnterior </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">Button</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">btnAnterior</span><span class="s2">)</span>
+        <span class="s0">val </span><span class="s1">btnProximo </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">Button</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">btnProximo</span><span class="s2">)</span>
+        <span class="s0">val </span><span class="s1">btnOuvir </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">ImageButton</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">btnOuvirLicao</span><span class="s2">)</span>
+
+        <span class="s5">// Botão Voltar</span>
+        <span class="s1">btnVoltar</span><span class="s2">.</span><span class="s1">setOnClickListener </span><span class="s2">{</span>
+            <span class="s1">pararAudio</span><span class="s2">()</span>
+            <span class="s1">finish</span><span class="s2">()</span>
+        <span class="s2">}</span>
+
+        <span class="s5">// Botão Anterior</span>
+        <span class="s1">btnAnterior</span><span class="s2">.</span><span class="s1">setOnClickListener </span><span class="s2">{</span>
+            <span class="s1">pararAudio</span><span class="s2">()</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">liçãoAtual </span><span class="s2">&gt; </span><span class="s4">0</span><span class="s2">) {</span>
+                <span class="s1">liçãoAtual</span><span class="s2">--</span>
+                <span class="s1">mostrarLiçãoAtual</span><span class="s2">()</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+
+        <span class="s5">// Botão Próximo</span>
+        <span class="s1">btnProximo</span><span class="s2">.</span><span class="s1">setOnClickListener </span><span class="s2">{</span>
+            <span class="s1">pararAudio</span><span class="s2">()</span>
+            <span class="s0">val </span><span class="s1">lições </span><span class="s2">= </span><span class="s0">if </span><span class="s2">(</span><span class="s1">idioma </span><span class="s2">== </span><span class="s3">&quot;es&quot;</span><span class="s2">) </span><span class="s1">liçõesEspanol </span><span class="s0">else </span><span class="s1">liçõesPortugues</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">liçãoAtual </span><span class="s2">&lt; </span><span class="s1">lições</span><span class="s2">.</span><span class="s1">size </span><span class="s2">- </span><span class="s4">1</span><span class="s2">) {</span>
+                <span class="s1">liçãoAtual</span><span class="s2">++</span>
+                <span class="s1">mostrarLiçãoAtual</span><span class="s2">()</span>
+            <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+                <span class="s0">val </span><span class="s1">mensagem </span><span class="s2">= </span><span class="s0">if </span><span class="s2">(</span><span class="s1">idioma </span><span class="s2">== </span><span class="s3">&quot;es&quot;</span><span class="s2">) {</span>
+                    <span class="s3">&quot;¡Felicitaciones! Completaste el módulo Desktop! 🎉&quot;</span>
+                <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+                    <span class="s3">&quot;Parabéns! Você completou o módulo Desktop! 🎉&quot;</span>
+                <span class="s2">}</span>
+                <span class="s1">Toast</span><span class="s2">.</span><span class="s1">makeText</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s1">mensagem</span><span class="s2">, </span><span class="s1">Toast</span><span class="s2">.</span><span class="s1">LENGTH_LONG</span><span class="s2">).</span><span class="s1">show</span><span class="s2">()</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+
+        <span class="s5">// Botão Ouvir Lição</span>
+        <span class="s1">btnOuvir</span><span class="s2">.</span><span class="s1">setOnClickListener </span><span class="s2">{</span>
+            <span class="s1">falarLiçãoAtual</span><span class="s2">()</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s1">private </span><span class="s0">fun </span><span class="s1">mostrarLiçãoAtual</span><span class="s2">() {</span>
+        <span class="s0">val </span><span class="s1">lições </span><span class="s2">= </span><span class="s0">if </span><span class="s2">(</span><span class="s1">idioma </span><span class="s2">== </span><span class="s3">&quot;es&quot;</span><span class="s2">) </span><span class="s1">liçõesEspanol </span><span class="s0">else </span><span class="s1">liçõesPortugues</span>
+        <span class="s0">val </span><span class="s1">lição </span><span class="s2">= </span><span class="s1">lições</span><span class="s2">[</span><span class="s1">liçãoAtual</span><span class="s2">]</span>
+
+        <span class="s0">val </span><span class="s1">txtTitulo </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">TextView</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">txtTituloLicao</span><span class="s2">)</span>
+        <span class="s0">val </span><span class="s1">txtConteudo </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">TextView</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">txtConteudoLicao</span><span class="s2">)</span>
+        <span class="s0">val </span><span class="s1">txtProgresso </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">TextView</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">txtProgresso</span><span class="s2">)</span>
+        <span class="s0">val </span><span class="s1">imgLicao </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">ImageView</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">imgLicao</span><span class="s2">)</span>
+
+        <span class="s1">txtTitulo</span><span class="s2">.</span><span class="s1">text </span><span class="s2">= </span><span class="s1">lição</span><span class="s2">.</span><span class="s1">titulo</span>
+        <span class="s1">txtConteudo</span><span class="s2">.</span><span class="s1">text </span><span class="s2">= </span><span class="s1">lição</span><span class="s2">.</span><span class="s1">conteudo</span>
+
+        <span class="s5">// CARREGAR IMAGEM DA LIÇÃO</span>
+        <span class="s1">carregarImagemLicao</span><span class="s2">(</span><span class="s1">imgLicao</span><span class="s2">, </span><span class="s1">lição</span><span class="s2">.</span><span class="s1">imagem</span><span class="s2">)</span>
+
+        <span class="s0">val </span><span class="s1">textoProgresso </span><span class="s2">= </span><span class="s0">if </span><span class="s2">(</span><span class="s1">idioma </span><span class="s2">== </span><span class="s3">&quot;es&quot;</span><span class="s2">) {</span>
+            <span class="s3">&quot;Lección </span><span class="s0">${</span><span class="s1">liçãoAtual </span><span class="s2">+ </span><span class="s4">1</span><span class="s0">} </span><span class="s3">de </span><span class="s0">${</span><span class="s1">lições</span><span class="s2">.</span><span class="s1">size</span><span class="s0">}</span><span class="s3">&quot;</span>
+        <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+            <span class="s3">&quot;Lição </span><span class="s0">${</span><span class="s1">liçãoAtual </span><span class="s2">+ </span><span class="s4">1</span><span class="s0">} </span><span class="s3">de </span><span class="s0">${</span><span class="s1">lições</span><span class="s2">.</span><span class="s1">size</span><span class="s0">}</span><span class="s3">&quot;</span>
+        <span class="s2">}</span>
+        <span class="s1">txtProgresso</span><span class="s2">.</span><span class="s1">text </span><span class="s2">= </span><span class="s1">textoProgresso</span>
+
+        <span class="s5">// Atualizar botões</span>
+        <span class="s0">val </span><span class="s1">btnAnterior </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">Button</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">btnAnterior</span><span class="s2">)</span>
+        <span class="s0">val </span><span class="s1">btnProximo </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">Button</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">btnProximo</span><span class="s2">)</span>
+
+        <span class="s1">btnAnterior</span><span class="s2">.</span><span class="s1">isEnabled </span><span class="s2">= </span><span class="s1">liçãoAtual </span><span class="s2">&gt; </span><span class="s4">0</span>
+        <span class="s1">btnProximo</span><span class="s2">.</span><span class="s1">text </span><span class="s2">= </span><span class="s0">if </span><span class="s2">(</span><span class="s1">liçãoAtual </span><span class="s2">== </span><span class="s1">lições</span><span class="s2">.</span><span class="s1">size </span><span class="s2">- </span><span class="s4">1</span><span class="s2">) {</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">idioma </span><span class="s2">== </span><span class="s3">&quot;es&quot;</span><span class="s2">) </span><span class="s3">&quot;Finalizar&quot; </span><span class="s0">else </span><span class="s3">&quot;Finalizar&quot;</span>
+        <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">idioma </span><span class="s2">== </span><span class="s3">&quot;es&quot;</span><span class="s2">) </span><span class="s3">&quot;Siguiente&quot; </span><span class="s0">else </span><span class="s3">&quot;Próxima&quot;</span>
+        <span class="s2">}</span>
+
+        <span class="s5">// Falar automaticamente ao mudar de lição</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">ttsInicializado</span><span class="s2">) {</span>
+            <span class="s1">falarLiçãoAtual</span><span class="s2">()</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s1">private </span><span class="s0">fun </span><span class="s1">carregarImagemLicao</span><span class="s2">(</span><span class="s1">imageView: ImageView</span><span class="s2">, </span><span class="s1">nomeImagem: String</span><span class="s2">) {</span>
+        <span class="s0">try </span><span class="s2">{</span>
+            <span class="s5">// Obter ID do recurso da imagem</span>
+            <span class="s0">val </span><span class="s1">resourceId </span><span class="s2">= </span><span class="s1">resources</span><span class="s2">.</span><span class="s1">getIdentifier</span><span class="s2">(</span><span class="s1">nomeImagem</span><span class="s2">, </span><span class="s3">&quot;drawable&quot;</span><span class="s2">, </span><span class="s1">packageName</span><span class="s2">)</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">resourceId </span><span class="s2">!= </span><span class="s4">0</span><span class="s2">) {</span>
+                <span class="s5">// Imagem encontrada - carregar</span>
+                <span class="s1">imageView</span><span class="s2">.</span><span class="s1">setImageResource</span><span class="s2">(</span><span class="s1">resourceId</span><span class="s2">)</span>
+            <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+                <span class="s5">// Imagem não encontrada - usar ícone padrão</span>
+                <span class="s1">imageView</span><span class="s2">.</span><span class="s1">setImageResource</span><span class="s2">(</span><span class="s1">android</span><span class="s2">.</span><span class="s1">R</span><span class="s2">.</span><span class="s1">drawable</span><span class="s2">.</span><span class="s1">ic_menu_help</span><span class="s2">)</span>
+                <span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;AVISO: Imagem não encontrada: </span><span class="s0">$</span><span class="s1">nomeImagem</span><span class="s3">&quot;</span><span class="s2">)</span>
+            <span class="s2">}</span>
+        <span class="s2">} </span><span class="s1">catch </span><span class="s2">(</span><span class="s1">e: Exception</span><span class="s2">) {</span>
+            <span class="s5">// Em caso de erro, usar ícone padrão</span>
+            <span class="s1">imageView</span><span class="s2">.</span><span class="s1">setImageResource</span><span class="s2">(</span><span class="s1">android</span><span class="s2">.</span><span class="s1">R</span><span class="s2">.</span><span class="s1">drawable</span><span class="s2">.</span><span class="s1">ic_menu_help</span><span class="s2">)</span>
+            <span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;ERRO ao carregar imagem </span><span class="s0">$</span><span class="s1">nomeImagem</span><span class="s3">: </span><span class="s0">${</span><span class="s1">e</span><span class="s2">.</span><span class="s1">message</span><span class="s0">}</span><span class="s3">&quot;</span><span class="s2">)</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s1">private </span><span class="s0">fun </span><span class="s1">falarLiçãoAtual</span><span class="s2">() {</span>
+        <span class="s0">if </span><span class="s2">(!</span><span class="s1">ttsInicializado</span><span class="s2">) {</span>
+            <span class="s1">Toast</span><span class="s2">.</span><span class="s1">makeText</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s3">&quot;Sistema de voz ainda não está pronto&quot;</span><span class="s2">, </span><span class="s1">Toast</span><span class="s2">.</span><span class="s1">LENGTH_SHORT</span><span class="s2">).</span><span class="s1">show</span><span class="s2">()</span>
+            <span class="s0">return</span>
+        <span class="s2">}</span>
+
+        <span class="s0">val </span><span class="s1">lições </span><span class="s2">= </span><span class="s0">if </span><span class="s2">(</span><span class="s1">idioma </span><span class="s2">== </span><span class="s3">&quot;es&quot;</span><span class="s2">) </span><span class="s1">liçõesEspanol </span><span class="s0">else </span><span class="s1">liçõesPortugues</span>
+        <span class="s0">val </span><span class="s1">lição </span><span class="s2">= </span><span class="s1">lições</span><span class="s2">[</span><span class="s1">liçãoAtual</span><span class="s2">]</span>
+
+        <span class="s5">// Configurar idioma do TTS</span>
+        <span class="s0">val </span><span class="s1">locale </span><span class="s2">= </span><span class="s0">if </span><span class="s2">(</span><span class="s1">idioma </span><span class="s2">== </span><span class="s3">&quot;es&quot;</span><span class="s2">) </span><span class="s1">Locale</span><span class="s2">(</span><span class="s3">&quot;es&quot;</span><span class="s2">, </span><span class="s3">&quot;ES&quot;</span><span class="s2">) </span><span class="s0">else </span><span class="s1">Locale</span><span class="s2">(</span><span class="s3">&quot;pt&quot;</span><span class="s2">, </span><span class="s3">&quot;BR&quot;</span><span class="s2">)</span>
+        <span class="s1">tts</span><span class="s2">.</span><span class="s1">language </span><span class="s2">= </span><span class="s1">locale</span>
+
+        <span class="s5">// Falar título e conteúdo com pausa</span>
+        <span class="s0">val </span><span class="s1">textoParaFalar </span><span class="s2">= </span><span class="s3">&quot;</span><span class="s0">${</span><span class="s1">lição</span><span class="s2">.</span><span class="s1">titulo</span><span class="s0">}</span><span class="s3">. . . </span><span class="s0">${</span><span class="s1">lição</span><span class="s2">.</span><span class="s1">conteudo</span><span class="s0">}</span><span class="s3">&quot;</span>
+        <span class="s1">tts</span><span class="s2">.</span><span class="s1">speak</span><span class="s2">(</span><span class="s1">textoParaFalar</span><span class="s2">, </span><span class="s1">TextToSpeech</span><span class="s2">.</span><span class="s1">QUEUE_FLUSH</span><span class="s2">, </span><span class="s0">null</span><span class="s2">, </span><span class="s3">&quot;lição_</span><span class="s0">${</span><span class="s1">liçãoAtual</span><span class="s0">}</span><span class="s3">&quot;</span><span class="s2">)</span>
+
+        <span class="s5">// Feedback visual</span>
+        <span class="s0">val </span><span class="s1">mensagemAudio </span><span class="s2">= </span><span class="s0">if </span><span class="s2">(</span><span class="s1">idioma </span><span class="s2">== </span><span class="s3">&quot;es&quot;</span><span class="s2">) </span><span class="s3">&quot;Reproduciendo lección...&quot; </span><span class="s0">else </span><span class="s3">&quot;Reproduzindo lição...&quot;</span>
+        <span class="s1">Toast</span><span class="s2">.</span><span class="s1">makeText</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s1">mensagemAudio</span><span class="s2">, </span><span class="s1">Toast</span><span class="s2">.</span><span class="s1">LENGTH_SHORT</span><span class="s2">).</span><span class="s1">show</span><span class="s2">()</span>
+    <span class="s2">}</span>
+
+    <span class="s1">private </span><span class="s0">fun </span><span class="s1">pararAudio</span><span class="s2">() {</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">ttsInicializado</span><span class="s2">) {</span>
+            <span class="s1">tts</span><span class="s2">.</span><span class="s1">stop</span><span class="s2">()</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onInit</span><span class="s2">(</span><span class="s1">status: Int</span><span class="s2">) {</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">status </span><span class="s2">== </span><span class="s1">TextToSpeech</span><span class="s2">.</span><span class="s1">SUCCESS</span><span class="s2">) {</span>
+            <span class="s1">ttsInicializado </span><span class="s2">= </span><span class="s0">true</span>
+            <span class="s5">// Falar primeira lição automaticamente</span>
+            <span class="s1">falarLiçãoAtual</span><span class="s2">()</span>
+            <span class="s0">val </span><span class="s1">mensagem </span><span class="s2">= </span><span class="s0">if </span><span class="s2">(</span><span class="s1">idioma </span><span class="s2">== </span><span class="s3">&quot;es&quot;</span><span class="s2">) </span><span class="s3">&quot;¡Sistema de voz listo!&quot; </span><span class="s0">else </span><span class="s3">&quot;Sistema de voz pronto!&quot;</span>
+            <span class="s1">Toast</span><span class="s2">.</span><span class="s1">makeText</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s1">mensagem</span><span class="s2">, </span><span class="s1">Toast</span><span class="s2">.</span><span class="s1">LENGTH_SHORT</span><span class="s2">).</span><span class="s1">show</span><span class="s2">()</span>
+        <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+            <span class="s0">val </span><span class="s1">mensagem </span><span class="s2">= </span><span class="s0">if </span><span class="s2">(</span><span class="s1">idioma </span><span class="s2">== </span><span class="s3">&quot;es&quot;</span><span class="s2">) </span><span class="s3">&quot;Error en el sistema de voz&quot; </span><span class="s0">else </span><span class="s3">&quot;Erro no sistema de voz&quot;</span>
+            <span class="s1">Toast</span><span class="s2">.</span><span class="s1">makeText</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s1">mensagem</span><span class="s2">, </span><span class="s1">Toast</span><span class="s2">.</span><span class="s1">LENGTH_SHORT</span><span class="s2">).</span><span class="s1">show</span><span class="s2">()</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onDestroy</span><span class="s2">() {</span>
+        <span class="s5">// Liberar recursos do TTS</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">ttsInicializado</span><span class="s2">) {</span>
+            <span class="s1">tts</span><span class="s2">.</span><span class="s1">stop</span><span class="s2">()</span>
+            <span class="s1">tts</span><span class="s2">.</span><span class="s1">shutdown</span><span class="s2">()</span>
+        <span class="s2">}</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onDestroy</span><span class="s2">()</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+
+<span class="s1">data </span><span class="s0">class </span><span class="s1">Lição</span><span class="s2">(</span>
+    <span class="s0">val </span><span class="s1">titulo: String</span><span class="s2">,</span>
+    <span class="s0">val </span><span class="s1">conteudo: String</span><span class="s2">,</span>
+    <span class="s0">val </span><span class="s1">icone: String</span><span class="s2">,</span>
+    <span class="s0">val </span><span class="s1">imagem: String</span>
+<span class="s2">)</span></pre>
+</body>
+</html>

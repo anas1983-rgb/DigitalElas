@@ -1,0 +1,106 @@
+<html>
+<head>
+<title>MenuModulosActivity.kt</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+MenuModulosActivity.kt</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">ana</span><span class="s2">.</span><span class="s1">digitalelas</span>
+
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">content</span><span class="s2">.</span><span class="s1">Intent</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">os</span><span class="s2">.</span><span class="s1">Bundle</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.*</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">appcompat</span><span class="s2">.</span><span class="s1">app</span><span class="s2">.</span><span class="s1">AppCompatActivity</span>
+
+<span class="s0">class </span><span class="s1">MenuModulosActivity : AppCompatActivity</span><span class="s2">() {</span>
+
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState: Bundle?</span><span class="s2">) {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState</span><span class="s2">)</span>
+        <span class="s1">setContentView</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.</span><span class="s1">activity_menu_modulos</span><span class="s2">)</span>
+
+        <span class="s3">// 1. DETECTAR IDIOMA recebido do MainActivity</span>
+        <span class="s0">val </span><span class="s1">idiomaRecebido </span><span class="s2">= </span><span class="s1">intent</span><span class="s2">.</span><span class="s1">getStringExtra</span><span class="s2">(</span><span class="s4">&quot;IDIOMA&quot;</span><span class="s2">) </span><span class="s1">?: </span><span class="s4">&quot;pt&quot;</span>
+
+        <span class="s3">// DEBUG: Verificar qual idioma está chegando</span>
+        <span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;DEBUG: Idioma recebido no menu = </span><span class="s0">$</span><span class="s1">idiomaRecebido</span><span class="s4">&quot;</span><span class="s2">)</span>
+        <span class="s1">Toast</span><span class="s2">.</span><span class="s1">makeText</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s4">&quot;Idioma: </span><span class="s0">$</span><span class="s1">idiomaRecebido</span><span class="s4">&quot;</span><span class="s2">, </span><span class="s1">Toast</span><span class="s2">.</span><span class="s1">LENGTH_SHORT</span><span class="s2">).</span><span class="s1">show</span><span class="s2">()</span>
+
+        <span class="s3">// 2. CONFIGURAR TÍTULO conforme idioma</span>
+        <span class="s0">val </span><span class="s1">textoTitle </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">TextView</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">textoTitulo</span><span class="s2">)</span>
+        <span class="s0">val </span><span class="s1">modulos </span><span class="s2">= </span><span class="s0">if </span><span class="s2">(</span><span class="s1">idiomaRecebido </span><span class="s2">== </span><span class="s4">&quot;es&quot;</span><span class="s2">) {</span>
+            <span class="s1">textoTitle</span><span class="s2">.</span><span class="s1">text </span><span class="s2">= </span><span class="s4">&quot;¿Qué quieres aprender?&quot;</span>
+            <span class="s1">listOf</span><span class="s2">(</span>
+                <span class="s1">Modulo</span><span class="s2">(</span><span class="s4">&quot;Computadora&quot;</span><span class="s2">, </span><span class="s4">&quot;🖥️&quot;</span><span class="s2">, </span><span class="s4">&quot;Mi Computadora Básica&quot;</span><span class="s2">),</span>
+                <span class="s1">Modulo</span><span class="s2">(</span><span class="s4">&quot;Teléfono&quot;</span><span class="s2">, </span><span class="s4">&quot;📱&quot;</span><span class="s2">, </span><span class="s4">&quot;Domina tu Smartphone&quot;</span><span class="s2">),</span>
+                <span class="s1">Modulo</span><span class="s2">(</span><span class="s4">&quot;Internet&quot;</span><span class="s2">, </span><span class="s4">&quot;🌐&quot;</span><span class="s2">, </span><span class="s4">&quot;Navega con Seguridad&quot;</span><span class="s2">),</span>
+                <span class="s1">Modulo</span><span class="s2">(</span><span class="s4">&quot;Email&quot;</span><span class="s2">, </span><span class="s4">&quot;📧&quot;</span><span class="s2">, </span><span class="s4">&quot;Email y Comunicación&quot;</span><span class="s2">),</span>
+                <span class="s1">Modulo</span><span class="s2">(</span><span class="s4">&quot;Trabajo&quot;</span><span class="s2">, </span><span class="s4">&quot;💼&quot;</span><span class="s2">, </span><span class="s4">&quot;Mundo del Trabajo&quot;</span><span class="s2">),</span>
+                <span class="s1">Modulo</span><span class="s2">(</span><span class="s4">&quot;Compras&quot;</span><span class="s2">, </span><span class="s4">&quot;🛒&quot;</span><span class="s2">, </span><span class="s4">&quot;Compras Inteligentes&quot;</span><span class="s2">),</span>
+                <span class="s1">Modulo</span><span class="s2">(</span><span class="s4">&quot;Banco&quot;</span><span class="s2">, </span><span class="s4">&quot;💰&quot;</span><span class="s2">, </span><span class="s4">&quot;Banco Digital&quot;</span><span class="s2">),</span>
+                <span class="s1">Modulo</span><span class="s2">(</span><span class="s4">&quot;Seguridad&quot;</span><span class="s2">, </span><span class="s4">&quot;🔒&quot;</span><span class="s2">, </span><span class="s4">&quot;Seguridad Digital&quot;</span><span class="s2">)</span>
+            <span class="s2">)</span>
+        <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+            <span class="s1">textoTitle</span><span class="s2">.</span><span class="s1">text </span><span class="s2">= </span><span class="s4">&quot;O que você quer aprender?&quot;</span>
+            <span class="s1">listOf</span><span class="s2">(</span>
+                <span class="s1">Modulo</span><span class="s2">(</span><span class="s4">&quot;Desktop&quot;</span><span class="s2">, </span><span class="s4">&quot;🖥️&quot;</span><span class="s2">, </span><span class="s4">&quot;Meu Computador Básico&quot;</span><span class="s2">),</span>
+                <span class="s1">Modulo</span><span class="s2">(</span><span class="s4">&quot;Celular&quot;</span><span class="s2">, </span><span class="s4">&quot;📱&quot;</span><span class="s2">, </span><span class="s4">&quot;Domine seu Smartphone&quot;</span><span class="s2">),</span>
+                <span class="s1">Modulo</span><span class="s2">(</span><span class="s4">&quot;Internet&quot;</span><span class="s2">, </span><span class="s4">&quot;🌐&quot;</span><span class="s2">, </span><span class="s4">&quot;Navegue com Segurança&quot;</span><span class="s2">),</span>
+                <span class="s1">Modulo</span><span class="s2">(</span><span class="s4">&quot;Email&quot;</span><span class="s2">, </span><span class="s4">&quot;📧&quot;</span><span class="s2">, </span><span class="s4">&quot;Email e Comunicação&quot;</span><span class="s2">),</span>
+                <span class="s1">Modulo</span><span class="s2">(</span><span class="s4">&quot;Trabalho&quot;</span><span class="s2">, </span><span class="s4">&quot;💼&quot;</span><span class="s2">, </span><span class="s4">&quot;Mundo do Trabalho&quot;</span><span class="s2">),</span>
+                <span class="s1">Modulo</span><span class="s2">(</span><span class="s4">&quot;Compras&quot;</span><span class="s2">, </span><span class="s4">&quot;🛒&quot;</span><span class="s2">, </span><span class="s4">&quot;Compras Inteligentes&quot;</span><span class="s2">),</span>
+                <span class="s1">Modulo</span><span class="s2">(</span><span class="s4">&quot;Banco&quot;</span><span class="s2">, </span><span class="s4">&quot;💰&quot;</span><span class="s2">, </span><span class="s4">&quot;Banco Digital&quot;</span><span class="s2">),</span>
+                <span class="s1">Modulo</span><span class="s2">(</span><span class="s4">&quot;Segurança&quot;</span><span class="s2">, </span><span class="s4">&quot;🔒&quot;</span><span class="s2">, </span><span class="s4">&quot;Segurança Digital&quot;</span><span class="s2">)</span>
+            <span class="s2">)</span>
+        <span class="s2">}</span>
+
+        <span class="s3">// 3. BOTÃO VOLTAR</span>
+        <span class="s0">val </span><span class="s1">btnVoltar </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">ImageButton</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">btnVoltar</span><span class="s2">)</span>
+        <span class="s1">btnVoltar</span><span class="s2">.</span><span class="s1">setOnClickListener </span><span class="s2">{</span>
+            <span class="s1">finish</span><span class="s2">()</span>
+        <span class="s2">}</span>
+
+        <span class="s3">// 4. CONFIGURAR GRIDVIEW</span>
+        <span class="s0">val </span><span class="s1">gridView </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">GridView</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">gridViewModulos</span><span class="s2">)</span>
+        <span class="s0">val </span><span class="s1">adapter </span><span class="s2">= </span><span class="s1">ModuloAdapter</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s1">modulos</span><span class="s2">)</span>
+        <span class="s1">gridView</span><span class="s2">.</span><span class="s1">adapter </span><span class="s2">= </span><span class="s1">adapter</span>
+
+        <span class="s3">// 5. CONFIGURAR CLIQUE NOS MÓDULOS</span>
+        <span class="s1">gridView</span><span class="s2">.</span><span class="s1">setOnItemClickListener </span><span class="s2">{ </span><span class="s1">parent</span><span class="s2">, </span><span class="s1">view</span><span class="s2">, </span><span class="s1">position</span><span class="s2">, </span><span class="s1">id </span><span class="s2">-&gt;</span>
+            <span class="s0">val </span><span class="s1">moduloSelecionado </span><span class="s2">= </span><span class="s1">modulos</span><span class="s2">[</span><span class="s1">position</span><span class="s2">]</span>
+
+            <span class="s0">when </span><span class="s2">(</span><span class="s1">moduloSelecionado</span><span class="s2">.</span><span class="s1">nome</span><span class="s2">) {</span>
+                <span class="s4">&quot;Desktop&quot;</span><span class="s2">, </span><span class="s4">&quot;Computadora&quot; </span><span class="s2">-&gt; {</span>
+                    <span class="s3">// ABRIR MÓDULO DESKTOP</span>
+                    <span class="s0">val </span><span class="s1">intent </span><span class="s2">= </span><span class="s1">Intent</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s1">DesktopActivity::</span><span class="s0">class</span><span class="s2">.</span><span class="s1">java</span><span class="s2">)</span>
+                    <span class="s1">intent</span><span class="s2">.</span><span class="s1">putExtra</span><span class="s2">(</span><span class="s4">&quot;IDIOMA&quot;</span><span class="s2">, </span><span class="s1">idiomaRecebido</span><span class="s2">)</span>
+                    <span class="s1">startActivity</span><span class="s2">(</span><span class="s1">intent</span><span class="s2">)</span>
+                <span class="s2">}</span>
+                <span class="s0">else </span><span class="s2">-&gt; {</span>
+                    <span class="s3">// Para outros módulos, mostrar mensagem</span>
+                    <span class="s0">val </span><span class="s1">mensagem </span><span class="s2">= </span><span class="s0">if </span><span class="s2">(</span><span class="s1">idiomaRecebido </span><span class="s2">== </span><span class="s4">&quot;es&quot;</span><span class="s2">) {</span>
+                        <span class="s4">&quot;Módulo </span><span class="s0">${</span><span class="s1">moduloSelecionado</span><span class="s2">.</span><span class="s1">nome</span><span class="s0">} </span><span class="s4">¡próximamente!&quot;</span>
+                    <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+                        <span class="s4">&quot;Módulo </span><span class="s0">${</span><span class="s1">moduloSelecionado</span><span class="s2">.</span><span class="s1">nome</span><span class="s0">} </span><span class="s4">em breve!&quot;</span>
+                    <span class="s2">}</span>
+                    <span class="s1">Toast</span><span class="s2">.</span><span class="s1">makeText</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s1">mensagem</span><span class="s2">, </span><span class="s1">Toast</span><span class="s2">.</span><span class="s1">LENGTH_SHORT</span><span class="s2">).</span><span class="s1">show</span><span class="s2">()</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+
+
+</pre>
+</body>
+</html>

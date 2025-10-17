@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFAF8"
+    android:fillViewport="true">
+
+    <!-- ⬇️ ÚNICO FILHO DO SCROLLVIEW -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Cabeçalho Compacto -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <ImageButton
+                android:id="@+id/btnVoltarQuiz"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@android:drawable/ic_menu_revert"
+                android:contentDescription="Voltar" />
+
+            <TextView
+                android:id="@+id/txtProgressoQuiz"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Pergunta 1 de 10"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="#8B4789" />
+
+            <ImageButton
+                android:id="@+id/btnOuvirQuiz"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@android:drawable/ic_media_play"
+                android:contentDescription="Ouvir pergunta" />
+
+        </LinearLayout>
+
+        <!-- Barra de Progresso -->
+        <ProgressBar
+            android:id="@+id/progressBarQuiz"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:layout_marginBottom="16dp"
+            android:progress="0"
+            android:max="10"
+            android:progressTint="#8B4789" />
+
+        <!-- Pergunta -->
+        <TextView
+            android:id="@+id/txtPerguntaQuiz"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Qual é a pergunta do quiz?"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="#333333"
+            android:layout_marginBottom="16dp"
+            android:padding="12dp"
+            android:background="#E8F5E8"
+            android:elevation="2dp" />
+
+        <!-- ✅ NOVO: Texto do Áudio em Tempo Real -->
+        <TextView
+            android:id="@+id/txtAudioEmTempoReal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="16sp"
+            android:gravity="center"
+            android:textColor="#666666"
+            android:background="#F0F0F0"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp"
+            android:visibility="gone"
+            android:maxLines="3"
+            android:ellipsize="end" />
+
+        <!-- Opções de Resposta -->
+        <RadioGroup
+            android:id="@+id/radioGroupOpcoes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical">
+
+            <!-- Os RadioButtons serão adicionados dinamicamente -->
+
+        </RadioGroup>
+
+        <!-- Explicação (inicialmente invisível) -->
+        <TextView
+            android:id="@+id/txtExplicacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="16sp"
+            android:gravity="start"
+            android:textColor="#4CAF50"
+            android:layout_marginBottom="16dp"
+            android:padding="12dp"
+            android:background="#F3E5F5"
+            android:visibility="gone" />
+
+        <!-- Botões de Navegação - Layout Vertical para Mobile -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnProximaPergunta"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="Ver Resposta"
+                android:textSize="16sp"
+                android:background="#8B4789"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="8dp" />
+
+            <Button
+                android:id="@+id/btnAvancarQuiz"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:text="Próxima"
+                android:textSize="16sp"
+                android:background="#4CAF50"
+                android:textColor="#FFFFFF"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <!-- FIM DO ÚNICO FILHO -->
+
+</ScrollView>

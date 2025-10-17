@@ -1,0 +1,64 @@
+<html>
+<head>
+<title>SecondFragment.kt</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #5f826b; font-style: italic;}
+.s4 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+SecondFragment.kt</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">ana</span><span class="s2">.</span><span class="s1">digitalelas</span>
+
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">os</span><span class="s2">.</span><span class="s1">Bundle</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">fragment</span><span class="s2">.</span><span class="s1">app</span><span class="s2">.</span><span class="s1">Fragment</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">LayoutInflater</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">View</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">ViewGroup</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">navigation</span><span class="s2">.</span><span class="s1">fragment</span><span class="s2">.</span><span class="s1">findNavController</span>
+<span class="s1">import com</span><span class="s2">.</span><span class="s1">ana</span><span class="s2">.</span><span class="s1">digitalelas</span><span class="s2">.</span><span class="s1">databinding</span><span class="s2">.</span><span class="s1">FragmentSecondBinding</span>
+
+<span class="s3">/**</span>
+ <span class="s3">* A simple [Fragment] subclass as the second destination in the navigation.</span>
+ <span class="s3">*/</span>
+<span class="s0">class </span><span class="s1">SecondFragment : Fragment</span><span class="s2">() {</span>
+
+    <span class="s1">private </span><span class="s0">var </span><span class="s1">_binding: FragmentSecondBinding? </span><span class="s2">= </span><span class="s0">null</span>
+
+    <span class="s4">// This property is only valid between onCreateView and</span>
+    <span class="s4">// onDestroyView.</span>
+    <span class="s1">private </span><span class="s0">val </span><span class="s1">binding get</span><span class="s2">() = </span><span class="s1">_binding</span><span class="s2">!!</span>
+
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onCreateView</span><span class="s2">(</span>
+        <span class="s1">inflater: LayoutInflater</span><span class="s2">, </span><span class="s1">container: ViewGroup?</span><span class="s2">,</span>
+        <span class="s1">savedInstanceState: Bundle?</span>
+    <span class="s2">)</span><span class="s1">: View </span><span class="s2">{</span>
+
+        <span class="s1">_binding </span><span class="s2">= </span><span class="s1">FragmentSecondBinding</span><span class="s2">.</span><span class="s1">inflate</span><span class="s2">(</span><span class="s1">inflater</span><span class="s2">, </span><span class="s1">container</span><span class="s2">, </span><span class="s0">false</span><span class="s2">)</span>
+        <span class="s0">return </span><span class="s1">binding</span><span class="s2">.</span><span class="s1">root</span>
+
+    <span class="s2">}</span>
+
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onViewCreated</span><span class="s2">(</span><span class="s1">view: View</span><span class="s2">, </span><span class="s1">savedInstanceState: Bundle?</span><span class="s2">) {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onViewCreated</span><span class="s2">(</span><span class="s1">view</span><span class="s2">, </span><span class="s1">savedInstanceState</span><span class="s2">)</span>
+
+        <span class="s1">binding</span><span class="s2">.</span><span class="s1">buttonSecond</span><span class="s2">.</span><span class="s1">setOnClickListener </span><span class="s2">{</span>
+            <span class="s1">findNavController</span><span class="s2">().</span><span class="s1">navigate</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">action_SecondFragment_to_FirstFragment</span><span class="s2">)</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onDestroyView</span><span class="s2">() {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onDestroyView</span><span class="s2">()</span>
+        <span class="s1">_binding </span><span class="s2">= </span><span class="s0">null</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>
