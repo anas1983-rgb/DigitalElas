@@ -11,10 +11,10 @@
     <!-- Ícone do App -->
     <ImageView
         android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:src="@mipmap/icone_app"
+        android:layout_height="116dp"
         android:layout_marginBottom="40dp"
-        android:contentDescription="Ícone do app Digital Elas" />
+        android:contentDescription="Ícone do app Digital Elas"
+        android:src="@mipmap/icone_app" />
 
     <!-- Título Principal -->
     <TextView
@@ -60,23 +60,24 @@
         android:layout_marginBottom="40dp" />
 
     <!-- Botão Ouvir Opções -->
+
     <ImageButton
         android:id="@+id/btnOuvirOpcoes"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:src="@android:drawable/ic_media_play"
         android:background="#FF9800"
-        android:contentDescription="Ouvir opções de idioma" />
+        android:contentDescription="Ouvir opções de idioma"
+        android:src="@android:drawable/ic_media_play" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ouvir opções
-        Escuchar opciones"
-        android:textSize="16sp"
-        android:textColor="#666666"
+        android:layout_marginTop="10dp"
         android:gravity="center"
-        android:layout_marginTop="10dp" />
+        android:text=  "             Ouvir opções
+              Escuchar opciones"
+        android:textColor="#666666"
+        android:textSize="16sp" />
 
 </LinearLayout>
     
