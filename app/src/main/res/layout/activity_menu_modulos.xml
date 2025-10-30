@@ -4,44 +4,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FFFAF8"
-    android:padding="24dp">
+    android:padding="20dp"
+    android:background="#F8F8F8">
 
-    <!-- Botão Voltar -->
     <ImageButton
         android:id="@+id/btnVoltar"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:src="@android:drawable/ic_media_previous"
-        android:background="@android:color/transparent"
-        android:contentDescription="@string/btn_voltar_descricao"
-        android:layout_marginBottom="24dp"
-        android:padding="8dp"
-        android:tint="#8B4789" />
+        android:src="@drawable/btn_voltar_background"
+        android:contentDescription="Botão voltar"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        />
 
-    <!-- Título -->
     <TextView
         android:id="@+id/textoTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/o_que_aprender"
+        android:text="O que você quer aprender?"
         android:textSize="28sp"
         android:textStyle="bold"
-        android:textColor="#8B4789"
-        android:gravity="center"
-        android:layout_marginBottom="32dp" />
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
+        />
 
-    <!-- Grid de Módulos -->
     <GridView
         android:id="@+id/gridViewModulos"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:numColumns="2"
-        android:verticalSpacing="20dp"
-        android:horizontalSpacing="20dp"
+        android:verticalSpacing="8dp"
+        android:horizontalSpacing="8dp"
         android:stretchMode="columnWidth"
-        android:clipToPadding="false"
-        android:padding="8dp" />
+        />
 
 </LinearLayout>
