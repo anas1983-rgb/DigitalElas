@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
-    android:background="#F8F8F8">
+    android:background="#F8F0FF">
 
     <ImageButton
         android:id="@+id/btnVoltar"
@@ -31,10 +31,10 @@
         android:id="@+id/gridViewModulos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:numColumns="2"
-        android:verticalSpacing="8dp"
         android:horizontalSpacing="8dp"
+        android:numColumns="2"
         android:stretchMode="columnWidth"
-        />
+        android:verticalSpacing="8dp"
+        android:background="#8B4789"/>
 
 </LinearLayout>
